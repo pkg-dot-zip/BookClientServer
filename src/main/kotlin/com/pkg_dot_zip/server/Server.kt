@@ -9,16 +9,20 @@ private val logger = KotlinLogging.logger {}
 
 class Server {
 
-    fun launch(portNumber: Int) {
+    fun attemptLaunch(port: Int) {
+        try {
+            launch(port)
+        } catch (e: IOException) {
+            logger.error { "Could not listen on port $port" }
+            exitProcess(-1)
+        }
+    }
+
+    private fun launch(port: Int) {
         val listening = true
 
-        try {
-            ServerSocket(portNumber).use { serverSocket ->
-                while (listening) MultiServerThread(serverSocket.accept()).start()
-            }
-        } catch (e: IOException) {
-            logger.error { "Could not listen on port $portNumber" }
-            exitProcess(-1)
+        ServerSocket(port).use { serverSocket ->
+            while (listening) MultiServerThread(serverSocket.accept()).start()
         }
     }
 
@@ -27,4 +31,4 @@ class Server {
     }
 }
 
-fun main() = Server().launch(Server.SERVER_PORT)
+fun main() = Server().attemptLaunch(Server.SERVER_PORT)

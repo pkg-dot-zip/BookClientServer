@@ -3,6 +3,7 @@ package com.pkg_dot_zip.com.pkg_dot_zip.bookquery
 import com.google.gson.Gson
 import java.io.InputStreamReader
 import java.io.Reader
+import java.net.URI
 import java.net.URL
 
 object BookHandler {
@@ -18,7 +19,7 @@ object BookHandler {
         }
 
         // No entries found. Create one.
-        val bookInfo = URL("https://www.googleapis.com/books/v1/volumes?q=isbn:$isbn")
+        val bookInfo = URI("https://www.googleapis.com/books/v1/volumes?q=isbn:$isbn").toURL()
 
         val input = bookInfo.openStream()
         val reader: Reader = InputStreamReader(input, CHARSET)
