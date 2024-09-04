@@ -32,6 +32,8 @@ class Client {
                 BufferedReader(
                     InputStreamReader(socket.getInputStream())
                 ).use { `in` ->
+                    logger.info { "Starting client at ${socket.inetAddress} ${socket.port}" }
+
                     val stdIn =
                         BufferedReader(InputStreamReader(System.`in`))
                     var fromServer: String
