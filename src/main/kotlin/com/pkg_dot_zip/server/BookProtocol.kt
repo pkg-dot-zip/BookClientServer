@@ -1,10 +1,11 @@
 package com.pkg_dot_zip.com.pkg_dot_zip.server
 
 import com.pkg_dot_zip.com.pkg_dot_zip.bookquery.BookHandler
+import com.pkg_dot_zip.com.pkg_dot_zip.util.ISBN
 
 class BookProtocol {
     private var state = State.WAITING
-    private var currentISBN: String = ""
+    private var currentISBN: ISBN = ""
 
     fun processInput(theInput: String): String? {
         var theOutput: String? = null

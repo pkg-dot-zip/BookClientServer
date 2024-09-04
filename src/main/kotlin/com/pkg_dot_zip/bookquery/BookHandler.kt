@@ -1,10 +1,10 @@
 package com.pkg_dot_zip.com.pkg_dot_zip.bookquery
 
 import com.google.gson.Gson
+import com.pkg_dot_zip.com.pkg_dot_zip.util.ISBN
 import java.io.InputStreamReader
 import java.io.Reader
 import java.net.URI
-import java.net.URL
 
 object BookHandler {
 
@@ -13,7 +13,7 @@ object BookHandler {
     // Here store books infinitely. Would eventually be problematic.
     private val cachedBookList = ArrayList<BookDetail>()
 
-    private fun getBookDetail(isbn: String): BookDetail {
+    private fun getBookDetail(isbn: ISBN): BookDetail {
         if (cachedBookList.find { it.isbn == isbn } != null) {
             return cachedBookList.find { it.isbn == isbn }!!
         }
@@ -28,9 +28,9 @@ object BookHandler {
         return cachedBookList.last()
     }
 
-    fun getTitle(isbn: String): String = "Title: ${getBookDetail(isbn).title}"
+    fun getTitle(isbn: ISBN): String = "Title: ${getBookDetail(isbn).title}"
 
-    fun getSubtitle(isbn: String): String = "Subtitle: ${getBookDetail(isbn).subTitle}"
+    fun getSubtitle(isbn: ISBN): String = "Subtitle: ${getBookDetail(isbn).subTitle}"
 
-    fun getAuthors(isbn: String): String = "Authors: ${getBookDetail(isbn).authors?.joinToString()}"
+    fun getAuthors(isbn: ISBN): String = "Authors: ${getBookDetail(isbn).authors?.joinToString()}"
 }
