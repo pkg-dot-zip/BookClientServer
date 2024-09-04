@@ -11,30 +11,9 @@ import kotlin.system.exitProcess
 
 class Client {
 
-    fun launch(hostName: String, port: Int) {
+    fun attemptLaunch(hostName: String, port: Int) {
         try {
-            Socket(hostName, port).use { kkSocket ->
-                PrintWriter(kkSocket.getOutputStream(), true).use { out ->
-                    BufferedReader(
-                        InputStreamReader(kkSocket.getInputStream())
-                    ).use { `in` ->
-                        val stdIn =
-                            BufferedReader(InputStreamReader(System.`in`))
-                        var fromServer: String
-                        var fromUser: String?
-                        while ((`in`.readLine().also { fromServer = it }) != null) {
-                            println("Server: $fromServer")
-                            if (fromServer == "Bye.") break
-
-                            fromUser = stdIn.readLine()
-                            if (fromUser != null) {
-                                println("Client: $fromUser")
-                                out.println(fromUser)
-                            }
-                        }
-                    }
-                }
-            }
+            launch(hostName, port)
         } catch (e: UnknownHostException) {
             System.err.println("Don't know about host $hostName")
             exitProcess(1)
@@ -47,10 +26,32 @@ class Client {
         }
     }
 
+    private fun launch(hostName: String, port: Int) {
+        Socket(hostName, port).use { kkSocket ->
+            PrintWriter(kkSocket.getOutputStream(), true).use { out ->
+                BufferedReader(
+                    InputStreamReader(kkSocket.getInputStream())
+                ).use { `in` ->
+                    val stdIn =
+                        BufferedReader(InputStreamReader(System.`in`))
+                    var fromServer: String
+                    var fromUser: String?
+                    while ((`in`.readLine().also { fromServer = it }) != null) {
+                        println("Server: $fromServer")
+                        if (fromServer == "Bye.") break
+
+                        fromUser = stdIn.readLine()
+                        if (fromUser != null) {
+                            println("Client: $fromUser")
+                            out.println(fromUser)
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 fun main() {
-    val client = Client().apply {
-        launch("localhost", Server.SERVER_PORT)
-    }
+    Client().attemptLaunch("localhost", Server.SERVER_PORT)
 }

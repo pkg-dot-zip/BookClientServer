@@ -12,10 +12,10 @@ class MultiServerThread(private var socket: Socket? = null) : Thread("MultiServe
         try {
             PrintWriter(socket!!.getOutputStream(), true).use { out ->
                 BufferedReader(InputStreamReader(socket!!.getInputStream())).use { `in` ->
-                    var inputLine: String?
+                    var inputLine: String
                     var outputLine: String?
                     val kkp = BookProtocol()
-                    outputLine = kkp.processInput(null)
+                    outputLine = kkp.processInput("")
                     out.println(outputLine)
 
                     while ((`in`.readLine().also { inputLine = it }) != null) {
