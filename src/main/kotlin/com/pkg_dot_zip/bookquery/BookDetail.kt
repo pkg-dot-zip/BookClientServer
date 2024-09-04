@@ -26,4 +26,7 @@ class BookDetail {
 
     @SerializedName("description")
     val description: String? = null
+
+    // NOTE: We declare this one by hand.
+    var isbn: String? = null
 }

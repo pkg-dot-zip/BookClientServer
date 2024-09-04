@@ -22,9 +22,9 @@ class BookProtocol {
             }
         } else if (state == SENDINFO) {
             when (theInput) {
-                INPUT_TITLE -> theOutput = "Title: ${BookHandler.getTitle(currentISBN)}"
-                INPUT_SUBTITLE -> theOutput = "Subtitle: ${BookHandler.getSubtitle(currentISBN)}"
-                INPUT_AUTHORS -> theOutput = "Authors: ${BookHandler.getAuthors(currentISBN)}"
+                INPUT_TITLE -> theOutput = BookHandler.getTitle(currentISBN)
+                INPUT_SUBTITLE -> theOutput = BookHandler.getSubtitle(currentISBN)
+                INPUT_AUTHORS -> theOutput = BookHandler.getAuthors(currentISBN)
                 INPUT_SWITCH -> {
                     state = WAITING
                     return processInput("")
