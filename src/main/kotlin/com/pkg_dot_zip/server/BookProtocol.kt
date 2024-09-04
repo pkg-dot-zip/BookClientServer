@@ -4,14 +4,7 @@ import com.pkg_dot_zip.com.pkg_dot_zip.bookquery.BookHandler
 
 class BookProtocol {
     private var state = WAITING
-    private var currentJoke = 0
     private var currentISBN: String = ""
-
-    private val INPUT_SWITCH = "switch"
-    private val INPUT_QUIT = "quit"
-    private val INPUT_TITLE = "title"
-    private val INPUT_SUBTITLE = "subtitle"
-    private val INPUT_AUTHORS = "authors"
 
     fun processInput(theInput: String): String? {
         var theOutput: String? = null
@@ -25,8 +18,7 @@ class BookProtocol {
                 theOutput = "Please request either $INPUT_TITLE, $INPUT_SUBTITLE or $INPUT_AUTHORS. Type $INPUT_SWITCH to switch books. Type $INPUT_QUIT to quit."
                 state = SENDINFO
             } else {
-                theOutput = "You're supposed to say \"Who's there?\"! " +
-                        "Try again. Knock! Knock!"
+                theOutput = "Please insert a valid ISBN"
             }
         } else if (state == SENDINFO) {
             when (theInput) {
@@ -48,8 +40,19 @@ class BookProtocol {
     }
 
     companion object {
+        //<editor-fold desc="States">
         private const val WAITING = 0
         private const val SENTBOOKISBN = 1
         private const val SENDINFO = 2
+        //</editor-fold>
+
+
+        //<editor-fold desc="Commands">
+        private const val INPUT_SWITCH = "switch"
+        private const val INPUT_QUIT = "quit"
+        private const val INPUT_TITLE = "title"
+        private const val INPUT_SUBTITLE = "subtitle"
+        private const val INPUT_AUTHORS = "authors"
+        //</editor-fold>
     }
 }
