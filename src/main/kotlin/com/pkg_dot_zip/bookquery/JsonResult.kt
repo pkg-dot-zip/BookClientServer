@@ -14,5 +14,5 @@ class JsonResult {
 
     fun getBook(): Book? = books?.first()
 
-    fun getBookDetail(): BookDetail = books!![0].bookDetail!!
+    fun getBookDetail(): BookDetail = books?.first()?.bookDetail!!
 }

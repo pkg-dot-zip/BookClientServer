@@ -13,6 +13,8 @@ dependencies {
     testImplementation(kotlin("test"))
 
     implementation("com.google.code.gson:gson:2.11.0")
+    implementation("io.github.oshai:kotlin-logging-jvm:5.1.4")
+    implementation("org.slf4j:slf4j-simple:2.0.3")
 }
 
 tasks.test {
