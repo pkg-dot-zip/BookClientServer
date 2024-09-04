@@ -12,7 +12,7 @@ class JsonResult {
     @SerializedName("items")
     private val books: List<Book>? = null
 
-    fun getBook(): Book = books!![0]
+    fun getBook(): Book? = books?.first()
 
     fun getBookDetail(): BookDetail = books!![0].bookDetail!!
 }
