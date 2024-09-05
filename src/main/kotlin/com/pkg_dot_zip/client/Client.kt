@@ -1,6 +1,6 @@
-package com.pkg_dot_zip.com.pkg_dot_zip.client
+package com.pkg_dot_zip.client
 
-import com.pkg_dot_zip.com.pkg_dot_zip.server.Server
+import com.pkg_dot_zip.server.Server
 import io.github.oshai.kotlinlogging.KotlinLogging
 import java.io.BufferedReader
 import java.io.IOException
@@ -18,10 +18,10 @@ class Client {
         try {
             launch(hostName, port)
         } catch (e: UnknownHostException) {
-            logger.error { "Don't know about host $hostName" }
+            logger.error { "Don't know about host $hostName. ${e.stackTraceToString()}" }
             exitProcess(1)
         } catch (e: IOException) {
-            logger.error { "Couldn't get I/O for the connection to $hostName" }
+            logger.error { "Couldn't get I/O for the connection to $hostName. ${e.stackTraceToString()}" }
             exitProcess(1)
         }
     }

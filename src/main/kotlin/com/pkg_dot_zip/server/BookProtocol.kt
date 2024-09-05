@@ -1,7 +1,7 @@
-package com.pkg_dot_zip.com.pkg_dot_zip.server
+package com.pkg_dot_zip.server
 
-import com.pkg_dot_zip.com.pkg_dot_zip.bookquery.BookHandler
-import com.pkg_dot_zip.com.pkg_dot_zip.util.ISBN
+import com.pkg_dot_zip.bookquery.BookHandler
+import com.pkg_dot_zip.util.ISBN
 
 class BookProtocol {
     private var state = State.WAITING

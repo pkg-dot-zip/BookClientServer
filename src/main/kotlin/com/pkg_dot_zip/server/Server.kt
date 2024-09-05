@@ -1,4 +1,4 @@
-package com.pkg_dot_zip.com.pkg_dot_zip.server
+package com.pkg_dot_zip.server
 
 import io.github.oshai.kotlinlogging.KotlinLogging
 import java.io.IOException
@@ -13,7 +13,7 @@ class Server {
         try {
             launch(port)
         } catch (e: IOException) {
-            logger.error { "Could not listen on port $port" }
+            logger.error { "Could not listen on port $port. ${e.stackTraceToString()}" }
             exitProcess(-1)
         }
     }

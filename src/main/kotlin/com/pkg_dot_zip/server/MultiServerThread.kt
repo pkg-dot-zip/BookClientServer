@@ -1,4 +1,4 @@
-package com.pkg_dot_zip.com.pkg_dot_zip.server
+package com.pkg_dot_zip.server
 
 import io.github.oshai.kotlinlogging.KotlinLogging
 import java.io.BufferedReader

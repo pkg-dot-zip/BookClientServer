@@ -1,7 +1,9 @@
-package com.pkg_dot_zip.com.pkg_dot_zip.bookquery
+package com.pkg_dot_zip.bookquery
 
 import com.google.gson.Gson
-import com.pkg_dot_zip.com.pkg_dot_zip.util.ISBN
+import com.pkg_dot_zip.bookquery.BookDetail
+import com.pkg_dot_zip.bookquery.JsonResult
+import com.pkg_dot_zip.util.ISBN
 import java.io.InputStreamReader
 import java.io.Reader
 import java.net.URI
@@ -14,9 +16,7 @@ object BookHandler {
     private val cachedBookList = ArrayList<BookDetail>()
 
     private fun getBookDetail(isbn: ISBN): BookDetail {
-        if (cachedBookList.find { it.isbn == isbn } != null) {
-            return cachedBookList.find { it.isbn == isbn }!!
-        }
+        if (cachedBookList.find { it.isbn == isbn } != null) return cachedBookList.find { it.isbn == isbn }!!
 
         // No entries found. Create one.
         val bookInfo = URI("https://www.googleapis.com/books/v1/volumes?q=isbn:$isbn").toURL()

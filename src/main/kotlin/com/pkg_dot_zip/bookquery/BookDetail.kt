@@ -1,7 +1,7 @@
-package com.pkg_dot_zip.com.pkg_dot_zip.bookquery
+package com.pkg_dot_zip.bookquery
 
 import com.google.gson.annotations.SerializedName
-import com.pkg_dot_zip.com.pkg_dot_zip.util.ISBN
+import com.pkg_dot_zip.util.ISBN
 
 class BookDetail {
     @SerializedName("title")
